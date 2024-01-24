@@ -1,6 +1,6 @@
 // Global variables
 const btnValueInFull = document.getElementById('btn-value-in-full');
-const inputValue = document.getElementById('input-value');
+const inputText = document.getElementById('input-value');
 const response = document.getElementById('response');
 
 const units = ['um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove'];
@@ -9,13 +9,29 @@ const tens = ['dez', 'vinte', 'trinta', 'quarenta', 'cinquenta', 'sessenta', 'se
 const hundreds = ['cento', 'duzentos', 'trezentos', 'quatrocentos', 'quinhentos', 'seiscentos', 'setecentos', 'oitocentos', 'novecentos'];
 
 // Helpers
+const checkValidation = (inputValue) => {
+  const validation = [
+    {
+      test: isNaN(inputValue) || typeof inputValue !== 'number',
+      msg: 'ERRO: O valor fornecido não é um número válido.',
+    },
+    {
+      test: inputValue > 999999999999999,
+      msg: 'ERRO: O valor fornecido é grande demais para ser convertido por extenso.',
+    },
+  ];
+
+  const errorValidation = validation.find(({ test }) => test);
+  return errorValidation?.msg;
+};
+
 const insertCharacterBetweenWords = (words, character) => {
   return words.flatMap((word, index) => (index < words.length - 1 ? [word, character] : [word]));
 };
 
-const getWords = (value, arr) => {
+const getWords = (digit, arr) => {
   const indexToDeduct = arr === teens ? 11 : 1;
-  return arr[value - indexToDeduct];
+  return arr[digit - indexToDeduct];
 };
 
 const convertNumberToWords = (numArray) => {
@@ -95,22 +111,6 @@ const getClassSeparator = (className, remainder) => {
   return null;
 };
 
-const checkValidation = (inputValue) => {
-  const validation = [
-    {
-      test: isNaN(inputValue) || typeof inputValue !== 'number',
-      msg: 'ERRO: O valor fornecido não é um número válido.',
-    },
-    {
-      test: inputValue > 999999999999999,
-      msg: 'ERRO: O valor fornecido é grande demais para ser convertido por extenso.',
-    },
-  ];
-
-  const errorValidation = validation.find((check) => check.test);
-  return errorValidation?.msg;
-};
-
 // Main function
 const getValueInFull = (inputValue) => {
   // Validation
@@ -171,15 +171,14 @@ const getValueInFull = (inputValue) => {
 
 // Listeners
 btnValueInFull.addEventListener('click', () => {
-  if (!inputValue.value || inputValue.value == 0) {
+  if (!inputText.value || inputText.value == 0) {
     alert('Digite um valor para escrever por extenso.');
     return;
   }
 
-  const inputValueSanitized = inputValue.value.replace(/\./g, '').replace(',', '.');
-
-  const result = getValueInFull(+inputValueSanitized);
+  const inputValue = inputText.value.replace(/\./g, '').replace(',', '.');
+  const result = getValueInFull(+inputValue);
   response.innerText = result;
 });
 
-inputValue.addEventListener('keyup', (e) => (response.innerText = ''));
+inputText.addEventListener('keyup', () => (response.innerText = ''));
