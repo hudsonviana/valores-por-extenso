@@ -13,18 +13,11 @@
     <div class="input-group">
       <div class="div-inputs">
         <label for="input-value">Digite o valor em R$</label>
-        <input type="text" id="input-value" placeholder="Valor" />
+        <input type="text" id="input-value" placeholder="Valor" class="data-input" data-input />
         <input type="button" id="btn-value-in-full" value="Excrever por extenso" />
       </div>
 
       <div class="div-copy">
-        <!-- <button type="button" class="btn-copy">
-          <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16">
-            <path
-              d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"
-            />
-          </svg>
-        </button> -->
         <button
           id="btn-copy-value-currency"
           data-component="IconButton"
@@ -36,11 +29,10 @@
           class="types__StyledButton-sc-ws60qy-0 fVPVZX"
         >
           <svg
-            id="svg-currency-copy"
             aria-hidden="true"
             focusable="false"
             role="img"
-            class="octicon octicon-copy"
+            class="octicon octicon-copy copy"
             viewBox="0 0 16 16"
             width="16"
             height="16"
@@ -55,11 +47,10 @@
             ></path>
           </svg>
           <svg
-            id="svg-currency-check"
             aria-hidden="true"
             focusable="false"
             role="img"
-            class="octicon octicon-check"
+            class="octicon octicon-check check"
             viewBox="0 0 16 16"
             width="16"
             height="16"
@@ -74,18 +65,10 @@
 
     <div class="input-group">
       <div class="div-outputs">
-        <textarea name="response" id="response" cols="60" rows="5" readonly></textarea>
+        <textarea name="response" id="response" cols="60" rows="5" class="data-input" data-input readonly></textarea>
       </div>
 
       <div class="div-copy">
-        <!-- <button type="button" data-no-visuals="true" class="btn-copy">
-          <svg height="16" viewBox="0 -960 960 960" width="16">
-            <path
-              d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"
-            />
-          </svg>
-        </button> -->
-
         <button
           id="btn-copy-value-in-full"
           data-component="IconButton"
@@ -97,11 +80,10 @@
           class="types__StyledButton-sc-ws60qy-0 fVPVZX"
         >
           <svg
-            id="svg-in-full-copy"
             aria-hidden="true"
             focusable="false"
             role="img"
-            class="octicon octicon-copy"
+            class="octicon octicon-copy copy"
             viewBox="0 0 16 16"
             width="16"
             height="16"
@@ -116,11 +98,10 @@
             ></path>
           </svg>
           <svg
-            id="svg-in-full-check"
             aria-hidden="true"
             focusable="false"
             role="img"
-            class="octicon octicon-check"
+            class="octicon octicon-check check"
             viewBox="0 0 16 16"
             width="16"
             height="16"

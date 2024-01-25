@@ -177,6 +177,23 @@ const getValueInFull = (inputValue) => {
 };
 
 // Listeners
+const copyTextToClipboard = (e) => {
+  const element = e.target.closest('.input-group').querySelector('.data-input');
+  const svgCopy = e.target.closest('.input-group').querySelector('.copy');
+  const svgCheck = e.target.closest('.input-group').querySelector('.check');
+
+  const text = element.value || element.innerHTML;
+  navigator.clipboard.writeText(text);
+
+  svgCopy.style.display = 'none';
+  svgCheck.style.display = 'inline-block';
+
+  setTimeout(() => {
+    svgCheck.style.display = 'none';
+    svgCopy.style.display = 'inline-block';
+  }, 2000);
+};
+
 btnValueInFull.addEventListener('click', () => {
   if (!inputText.value || inputText.value == 0) {
     alert('Digite um valor para escrever por extenso.');
@@ -195,8 +212,13 @@ btnValueInFull.addEventListener('click', () => {
 
 inputText.addEventListener('keyup', () => (response.innerText = ''));
 
-btnCopyValueCurrency.addEventListener('click', () => {
-  console.log('valor monetário copiado!');
+btnCopyValueCurrency.addEventListener('click', (e) => {
+  if (response.innerHTML == '') {
+    e.preventDefault();
+    return;
+  }
+
+  copyTextToClipboard(e);
 });
 
 btnCopyValueInFull.addEventListener('click', (e) => {
@@ -205,19 +227,7 @@ btnCopyValueInFull.addEventListener('click', (e) => {
     return;
   }
 
-  const text = response.innerHTML;
-  navigator.clipboard.writeText(text);
-
-  const svgInFullCopy = document.getElementById('svg-in-full-copy');
-  const svgInFullCheck = document.getElementById('svg-in-full-check');
-
-  svgInFullCopy.style.display = 'none';
-  svgInFullCheck.style.display = 'inline-block';
-
-  setTimeout(() => {
-    svgInFullCheck.style.display = 'none';
-    svgInFullCopy.style.display = 'inline-block';
-  }, 2000);
+  copyTextToClipboard(e);
 });
 
 response.addEventListener('focus', () => response.select());
