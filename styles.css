@@ -1,0 +1,42 @@
+.input-group {
+  position: relative;
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+input[type='text'] {
+  line-height: 24px;
+}
+
+.div-inputs input[type='button'] {
+  height: 30px;
+}
+
+.div-copy {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+.fVPVZX[data-component='IconButton'][data-no-visuals] {
+  color: rgb(125, 133, 144);
+}
+
+/* .fVPVZX:hover:not([disabled]) {
+  border-color: rgba(177, 186, 196, 0.12);
+  background-color: rgba(177, 186, 196, 0.12);
+} */
+
+.fVPVZX[data-no-visuals] {
+  cursor: pointer;
+  color: rgb(47, 129, 247);
+  margin-left: 4px;
+  margin-right: 0px;
+  width: 30px;
+  height: 30px;
+}

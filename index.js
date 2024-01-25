@@ -1,7 +1,14 @@
+/**
+ * Desenvolvido por Hudson Andrade Viana
+ * em 21 de janeiro de 2024
+ */
+
 // Global variables
 const btnValueInFull = document.getElementById('btn-value-in-full');
 const inputText = document.getElementById('input-value');
 const response = document.getElementById('response');
+const btnCopyValueCurrency = document.getElementById('btn-copy-value-currency');
+const btnCopyValueInFull = document.getElementById('btn-copy-value-in-full');
 
 const units = ['um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove'];
 const teens = ['onze', 'doze', 'treze', 'quatorze', 'quinze', 'dezesseis', 'dezessete', 'dezoito', 'dezenove'];
@@ -17,7 +24,7 @@ const checkValidation = (inputValue) => {
     },
     {
       test: inputValue > 999999999999999,
-      msg: 'ERRO: O valor fornecido é grande demais para ser convertido por extenso.',
+      msg: 'ERRO: O valor fornecido é grande demais para ser escrito por extenso.',
     },
   ];
 
@@ -176,9 +183,41 @@ btnValueInFull.addEventListener('click', () => {
     return;
   }
 
-  const inputValue = inputText.value.replace(/\./g, '').replace(',', '.');
-  const result = getValueInFull(+inputValue);
+  const inputValue = Number(inputText.value.replace(/\./g, '').replace(',', '.'));
+
+  if (!isNaN(inputValue)) {
+    inputText.value = inputValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).replace('R$ ', '');
+  }
+
+  const result = getValueInFull(inputValue);
   response.innerText = result;
 });
 
 inputText.addEventListener('keyup', () => (response.innerText = ''));
+
+btnCopyValueCurrency.addEventListener('click', () => {
+  console.log('valor monetário copiado!');
+});
+
+btnCopyValueInFull.addEventListener('click', (e) => {
+  if (response.innerHTML == '') {
+    e.preventDefault();
+    return;
+  }
+
+  const text = response.innerHTML;
+  navigator.clipboard.writeText(text);
+
+  const svgInFullCopy = document.getElementById('svg-in-full-copy');
+  const svgInFullCheck = document.getElementById('svg-in-full-check');
+
+  svgInFullCopy.style.display = 'none';
+  svgInFullCheck.style.display = 'inline-block';
+
+  setTimeout(() => {
+    svgInFullCheck.style.display = 'none';
+    svgInFullCopy.style.display = 'inline-block';
+  }, 2000);
+});
+
+response.addEventListener('focus', () => response.select());

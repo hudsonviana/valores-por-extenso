@@ -5,16 +5,134 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Valor por extenso</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <h2>Valor por extenso</h2>
 
-    <label for="input-value">Digite o valor em R$</label>
-    <input type="text" id="input-value" placeholder="Valor" />
-    <input type="button" id="btn-value-in-full" value="Excrever por extenso" />
-    <br />
-    <br />
-    <textarea name="response" id="response" cols="60" rows="10" readonly></textarea>
+    <div class="input-group">
+      <div class="div-inputs">
+        <label for="input-value">Digite o valor em R$</label>
+        <input type="text" id="input-value" placeholder="Valor" />
+        <input type="button" id="btn-value-in-full" value="Excrever por extenso" />
+      </div>
+
+      <div class="div-copy">
+        <!-- <button type="button" class="btn-copy">
+          <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16">
+            <path
+              d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"
+            />
+          </svg>
+        </button> -->
+        <button
+          id="btn-copy-value-currency"
+          data-component="IconButton"
+          type="button"
+          aria-label="Copy url to clipboard"
+          tabindex="0"
+          aria-describedby="tooltip-:rv:"
+          data-no-visuals="true"
+          class="types__StyledButton-sc-ws60qy-0 fVPVZX"
+        >
+          <svg
+            id="svg-currency-copy"
+            aria-hidden="true"
+            focusable="false"
+            role="img"
+            class="octicon octicon-copy"
+            viewBox="0 0 16 16"
+            width="16"
+            height="16"
+            fill="currentColor"
+            style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible"
+          >
+            <path
+              d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+            ></path>
+            <path
+              d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+            ></path>
+          </svg>
+          <svg
+            id="svg-currency-check"
+            aria-hidden="true"
+            focusable="false"
+            role="img"
+            class="octicon octicon-check"
+            viewBox="0 0 16 16"
+            width="16"
+            height="16"
+            fill="currentColor"
+            style="color: green; display: none; user-select: none; vertical-align: text-bottom; overflow: visible"
+          >
+            <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="div-outputs">
+        <textarea name="response" id="response" cols="60" rows="5" readonly></textarea>
+      </div>
+
+      <div class="div-copy">
+        <!-- <button type="button" data-no-visuals="true" class="btn-copy">
+          <svg height="16" viewBox="0 -960 960 960" width="16">
+            <path
+              d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"
+            />
+          </svg>
+        </button> -->
+
+        <button
+          id="btn-copy-value-in-full"
+          data-component="IconButton"
+          type="button"
+          aria-label="Copy url to clipboard"
+          tabindex="0"
+          aria-describedby="tooltip-:rv:"
+          data-no-visuals="true"
+          class="types__StyledButton-sc-ws60qy-0 fVPVZX"
+        >
+          <svg
+            id="svg-in-full-copy"
+            aria-hidden="true"
+            focusable="false"
+            role="img"
+            class="octicon octicon-copy"
+            viewBox="0 0 16 16"
+            width="16"
+            height="16"
+            fill="currentColor"
+            style="display: inline-block; user-select: none; vertical-align: text-bottom; overflow: visible"
+          >
+            <path
+              d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"
+            ></path>
+            <path
+              d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"
+            ></path>
+          </svg>
+          <svg
+            id="svg-in-full-check"
+            aria-hidden="true"
+            focusable="false"
+            role="img"
+            class="octicon octicon-check"
+            viewBox="0 0 16 16"
+            width="16"
+            height="16"
+            fill="currentColor"
+            style="color: green; display: none; user-select: none; vertical-align: text-bottom; overflow: visible"
+          >
+            <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
     <script src="index.js"></script>
   </body>
 </html>
