@@ -217,7 +217,7 @@ inputText.addEventListener('keyup', () => (response.innerText = ''));
 response.addEventListener('focus', () => response.select());
 
 document.body.addEventListener('click', (e) => {
-  if (e.target.matches('.fVPVZX') || e.target.parentNode.matches('.fVPVZX')) {
+  if (e.target.matches('[copy-button]')) {
     if (response.innerHTML == '') {
       e.preventDefault();
       return;

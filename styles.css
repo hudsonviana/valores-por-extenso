@@ -17,6 +17,9 @@ input[type='text'] {
 }
 
 .div-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: absolute;
   top: 0;
   right: 0;
