@@ -34,9 +34,9 @@ input[type='text'] {
 
 .fVPVZX[data-no-visuals] {
   cursor: pointer;
-  color: rgb(47, 129, 247);
-  margin-left: 4px;
-  margin-right: 0px;
+  /* color: rgb(47, 129, 247); */
+  /* margin-left: 4px; */
+  /* margin-right: 0px; */
   width: 30px;
   height: 30px;
 }

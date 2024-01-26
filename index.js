@@ -7,8 +7,6 @@
 const btnValueInFull = document.getElementById('btn-value-in-full');
 const inputText = document.getElementById('input-value');
 const response = document.getElementById('response');
-const btnCopyValueCurrency = document.getElementById('btn-copy-value-currency');
-const btnCopyValueInFull = document.getElementById('btn-copy-value-in-full');
 
 const units = ['um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove'];
 const teens = ['onze', 'doze', 'treze', 'quatorze', 'quinze', 'dezesseis', 'dezessete', 'dezoito', 'dezenove'];
@@ -177,10 +175,14 @@ const getValueInFull = (inputValue) => {
 };
 
 // Listeners
+const getClosestElement = (event, className) => {
+  return event.target.closest('.input-group').querySelector(className);
+};
+
 const copyTextToClipboard = (e) => {
-  const element = e.target.closest('.input-group').querySelector('.data-input');
-  const svgCopy = e.target.closest('.input-group').querySelector('.copy');
-  const svgCheck = e.target.closest('.input-group').querySelector('.check');
+  const element = getClosestElement(e, '.data-input');
+  const svgCopy = getClosestElement(e, '.copy');
+  const svgCheck = getClosestElement(e, '.check');
 
   const text = element.value || element.innerHTML;
   navigator.clipboard.writeText(text);
@@ -191,7 +193,7 @@ const copyTextToClipboard = (e) => {
   setTimeout(() => {
     svgCheck.style.display = 'none';
     svgCopy.style.display = 'inline-block';
-  }, 2000);
+  }, 1000);
 };
 
 btnValueInFull.addEventListener('click', () => {
@@ -212,22 +214,14 @@ btnValueInFull.addEventListener('click', () => {
 
 inputText.addEventListener('keyup', () => (response.innerText = ''));
 
-btnCopyValueCurrency.addEventListener('click', (e) => {
-  if (response.innerHTML == '') {
-    e.preventDefault();
-    return;
-  }
-
-  copyTextToClipboard(e);
-});
-
-btnCopyValueInFull.addEventListener('click', (e) => {
-  if (response.innerHTML == '') {
-    e.preventDefault();
-    return;
-  }
-
-  copyTextToClipboard(e);
-});
-
 response.addEventListener('focus', () => response.select());
+
+document.body.addEventListener('click', (e) => {
+  if (e.target.matches('.fVPVZX') || e.target.parentNode.matches('.fVPVZX')) {
+    if (response.innerHTML == '') {
+      e.preventDefault();
+      return;
+    }
+    copyTextToClipboard(e);
+  }
+});
