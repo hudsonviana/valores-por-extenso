@@ -1,3 +1,11 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.container {
+  margin-left: 25px;
+}
 .input-group {
   position: relative;
   width: 500px;
@@ -75,4 +83,13 @@ input[type='text'] {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  color: #555;
+  background-color: #eee;
+  width: 100%;
+  padding: 10px 25px;
 }

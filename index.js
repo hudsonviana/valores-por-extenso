@@ -174,6 +174,12 @@ const getValueInFull = (inputValue) => {
   return valueInFull;
 };
 
+// Current year
+document.addEventListener('DOMContentLoaded', (event) => {
+  const currentYear = new Date().getFullYear();
+  document.querySelector('.current-year').innerHTML = currentYear;
+});
+
 // Listeners
 const getClosestElement = (event, className) => {
   return event.target.closest('.input-group').querySelector(className);
