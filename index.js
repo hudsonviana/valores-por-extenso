@@ -175,12 +175,12 @@ const getValueInFull = (inputValue) => {
 };
 
 // Current year
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
   const currentYear = new Date().getFullYear();
   document.querySelector('.current-year').innerHTML = currentYear;
 });
 
-// Listeners
+// Copy text functions
 const getClosestElement = (event, className) => {
   return event.target.closest('.input-group').querySelector(className);
 };
@@ -206,6 +206,7 @@ const copyTextToClipboard = (e) => {
   }, 1000);
 };
 
+// Listeners
 btnValueInFull.addEventListener('click', () => {
   if (!inputText.value || inputText.value == 0) {
     alert('Digite um valor para escrever por extenso.');
