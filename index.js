@@ -189,16 +189,20 @@ const copyTextToClipboard = (e) => {
   const element = getClosestElement(e, '.data-input');
   const svgCopy = getClosestElement(e, '.copy');
   const svgCheck = getClosestElement(e, '.check');
+  const btnCopy = getClosestElement(e, '.fVPVZX');
 
   const text = element.value || element.innerHTML;
   navigator.clipboard.writeText(text);
 
+  const defaultDataTooltipValue = btnCopy.getAttribute('data-tooltip');
+  btnCopy.setAttribute('data-tooltip', 'Copiado!');
   svgCopy.style.display = 'none';
   svgCheck.style.display = 'inline-block';
 
   setTimeout(() => {
     svgCheck.style.display = 'none';
     svgCopy.style.display = 'inline-block';
+    btnCopy.setAttribute('data-tooltip', defaultDataTooltipValue);
   }, 1000);
 };
 
