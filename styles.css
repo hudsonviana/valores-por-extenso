@@ -3,9 +3,11 @@ body {
   box-sizing: border-box;
   overflow: hidden;
 }
+
 .container {
   margin-left: 25px;
 }
+
 .input-group {
   position: relative;
   width: 500px;
@@ -22,6 +24,14 @@ input[type='text'] {
 
 .div-inputs input[type='button'] {
   height: 30px;
+}
+
+#btn-copy-full-text {
+  height: 30px;
+}
+
+#btn-copy-full-text svg {
+  color: rgb(125, 133, 144);
 }
 
 .div-copy {

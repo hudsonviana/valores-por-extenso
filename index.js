@@ -5,6 +5,7 @@
 
 // Global variables
 const btnValueInFull = document.getElementById('btn-value-in-full');
+const btnCopyFullText = document.getElementById('btn-copy-full-text');
 const inputText = document.getElementById('input-value');
 const response = document.getElementById('response');
 
@@ -235,4 +236,15 @@ document.body.addEventListener('click', (e) => {
     }
     copyTextToClipboard(e);
   }
+});
+
+btnCopyFullText.addEventListener('click', (e) => {
+  if (response.innerHTML == '') {
+    e.preventDefault();
+    return;
+  }
+
+  const fullText = `R$ ${inputText.value} (${response.innerHTML})`;
+  navigator.clipboard.writeText(fullText);
+
 });
