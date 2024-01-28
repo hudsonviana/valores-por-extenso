@@ -175,7 +175,7 @@ const getValueInFull = (inputValue) => {
   return valueInFull;
 };
 
-// Current year
+// Get current year function
 document.addEventListener('DOMContentLoaded', () => {
   const currentYear = new Date().getFullYear();
   document.querySelector('.current-year').innerHTML = currentYear;
@@ -186,25 +186,27 @@ const getClosestElement = (event, className) => {
   return event.target.closest('.input-group').querySelector(className);
 };
 
-const copyTextToClipboard = (e) => {
-  const element = getClosestElement(e, '.data-input');
-  const svgCopy = getClosestElement(e, '.copy');
-  const svgCheck = getClosestElement(e, '.check');
-  const btnCopy = getClosestElement(e, '.fVPVZX');
+const copyTextToClipboard = (text) => navigator.clipboard.writeText(text);
 
-  const text = element.value || element.innerHTML;
-  navigator.clipboard.writeText(text);
-
-  const defaultDataTooltipValue = btnCopy.getAttribute('data-tooltip');
-  btnCopy.setAttribute('data-tooltip', 'Copiado!');
+const toggleButtonIcon = (btn, svgCopy, svgCheck) => {
+  const tmpDataTooltipValue = btn.getAttribute('data-tooltip');
+  btn.setAttribute('data-tooltip', 'Copiado!');
   svgCopy.style.display = 'none';
   svgCheck.style.display = 'inline-block';
 
   setTimeout(() => {
     svgCheck.style.display = 'none';
     svgCopy.style.display = 'inline-block';
-    btnCopy.setAttribute('data-tooltip', defaultDataTooltipValue);
+    btn.setAttribute('data-tooltip', tmpDataTooltipValue);
   }, 1000);
+};
+
+const checkResponseValidation = (e) => {
+  if (response.innerHTML) {
+    return false;
+  }
+  e.preventDefault();
+  return true;
 };
 
 // Listeners
@@ -230,21 +232,28 @@ response.addEventListener('focus', () => response.select());
 
 document.body.addEventListener('click', (e) => {
   if (e.target.matches('[copy-button]')) {
-    if (response.innerHTML == '') {
-      e.preventDefault();
-      return;
-    }
-    copyTextToClipboard(e);
+    if (checkResponseValidation(e)) return;
+
+    const element = getClosestElement(e, '.data-input');
+    const btnCopy = getClosestElement(e, '.fVPVZX');
+    const svgCopy = getClosestElement(e, '.copy');
+    const svgCheck = getClosestElement(e, '.check');
+
+    copyTextToClipboard(element.value || element.innerHTML);
+
+    toggleButtonIcon(btnCopy, svgCopy, svgCheck);
   }
 });
 
 btnCopyFullText.addEventListener('click', (e) => {
-  if (response.innerHTML == '') {
-    e.preventDefault();
-    return;
-  }
+  if (checkResponseValidation(e)) return;
 
   const fullText = `R$ ${inputText.value} (${response.innerHTML})`;
-  navigator.clipboard.writeText(fullText);
 
+  copyTextToClipboard(fullText);
+
+  const svgCopy = getClosestElement(e, '.copy');
+  const svgCheck = getClosestElement(e, '.check');
+
+  toggleButtonIcon(btnCopyFullText, svgCopy, svgCheck);
 });
