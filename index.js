@@ -182,11 +182,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Copy text functions
-const getClosestElement = (event, className) => {
-  return event.target.closest('.input-group').querySelector(className);
-};
-
 const copyTextToClipboard = (text) => navigator.clipboard.writeText(text);
+
+const getClosestElement = (event, className) => event.target.closest('.input-group').querySelector(className);
 
 const toggleButtonIcon = (btn, svgCopy, svgCheck) => {
   const tmpDataTooltipValue = btn.getAttribute('data-tooltip');
